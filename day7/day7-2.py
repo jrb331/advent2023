@@ -35,36 +35,36 @@ for idx, data in enumerate(cardData):
     cardData[idx].append(noChars)
 for hand in cardData:
     cardDict = hand[2]
-    hasJoker = [False, 0]
+    jokers = 0
     if 'J' in cardDict.keys():
-        hasJoker = [True, cardDict['J']]
+        jokers = cardDict['J']
     # five of kind
     if len(cardDict.keys())==1:
         handTypes[0].append(hand)
     elif len(cardDict.keys())==2:
         # four of kind
         if any(value >= 4 for value in cardDict.values()):
-            if hasJoker[0] is True:
+            if jokers > 0:
                 handTypes[0].append(hand)
             else:
                 handTypes[1].append(hand)
         # full house
         else:
-            if hasJoker[0] is True:
+            if jokers > 0:
                 handTypes[0].append(hand)
             else:
                 handTypes[2].append(hand)
     elif len(cardDict.keys())==3:
         #three of kind
         if any(value >= 3 for value in cardDict.values()):
-            if hasJoker[0] is True:
+            if jokers > 0:
                 handTypes[1].append(hand)
             else:
                 handTypes[3].append(hand)
         #two pair
         else:
-            if hasJoker[0] is True:
-                if hasJoker[1] >= 2:
+            if jokers > 0:
+                if jokers >= 2:
                     handTypes[1].append(hand)
                 else:
                     handTypes[2].append(hand)
@@ -72,13 +72,13 @@ for hand in cardData:
                 handTypes[4].append(hand)
     # one pair
     elif len(cardDict.keys())==4:
-        if hasJoker[0] is True:
+        if jokers > 0:
             handTypes[3].append(hand)
         else:
             handTypes[5].append(hand)
     # high card
     else:
-        if hasJoker[0] is True:
+        if jokers > 0:
             handTypes[5].append(hand)
         else:
             handTypes[6].append(hand)
