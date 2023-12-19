@@ -22,59 +22,21 @@ opposite = {
     'right': 'left'
 }
 
-# def nextStep(grid, x, y, prev):
-#     currChar = grid[y][x]
-#     print(f"currently at position {x}, {y} at char {currChar}")
-#     if currChar == 'S':
-#         print("base case. loop complete")
-#         return 0
-#     # print(options[currChar])
-#     # print(prev)
-#     nextDir = options[currChar]
-#     print(f"all options: {nextDir}")
-#     print(prev)
-#     if nextDir[0] == prev:
-#         nextDir = nextDir[1]
-#     else:
-#         nextDir = nextDir[0]
-#     # nextDir.remove(prev)
-#     print(f"option after removal: {nextDir}")
-#     # print(f"next Direction: {nextDir}")
-#     print(f"next direction: {nextDir}")
-#     print(f"since I came from {prev} and my current character is {currChar}, I must go {nextDir}")
-#     if nextDir == 'up':
-#         y-=1
-#     elif nextDir == 'down':
-#         y+=1
-#     elif nextDir == 'right':
-#         x+=1
-#     else:
-#         x-=1
-#     return 1 + nextStep(grid, x, y, opposite[nextDir])
-
 with open("input.txt", "r") as f:
     lines = f.readlines()
 
 grid = []
-x = 0
-y = 0
+x = None
+y = None
 for idx, line in enumerate(lines):
     line = line.strip()
     grid.append(line)
-    if x == 0 & y == 0:
+    if x == None & y == None:
         for c, char in enumerate(line):
             if char == 'S':
                 y = idx
                 x = c
                 
-# print(f"{x}, {y}")
-# print(grid)
-# print(grid[y][x])
-# print(grid[y+1][x]) # down
-# print(grid[y-1][x]) # up
-# print(grid[y][x+1]) # right
-# print(grid[y][x-1]) # left
-# opposite[nextDir]
 nextList = []
 if grid[y+1][x] in test['down']:
     nextList.append('down')
